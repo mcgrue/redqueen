@@ -1,13 +1,14 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-
 import { Link } from "react-router";
 
+import styles from '../App.module.css'
+import '../Global.module.css'
 
 function MainLayout() {
   return (
-    <div>
-      <header>
+    <div className={styles.App}>
+      <header className={styles.header}>
         <h1>My App</h1>
         <nav>
           <ul>
@@ -17,7 +18,7 @@ function MainLayout() {
           </ul>
         </nav>
       </header>
-      <main>
+      <main className={styles.main}>
         <Outlet />
       </main>
     </div>
