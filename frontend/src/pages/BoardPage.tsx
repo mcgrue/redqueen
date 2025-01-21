@@ -1,15 +1,15 @@
 
 import Card from '../components/Card';
 
-function AboutPage() {
+function BoardPage() {
   return (
-    <div className="AboutPage">
+    <div className="BoardPage">
       <header className="App-header">
-        About Page
+        Board Game
         <Card />
       </header>
     </div>
   );
 }
 
-export default AboutPage;
+export default BoardPage;
