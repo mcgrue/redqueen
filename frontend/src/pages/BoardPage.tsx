@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { type PokerCard } from '../components/Card';
 import ClickableCard from '../components/ClickableCard';
 
+import { DnDemo } from '../components/DnDemo';
+
 function BoardPage() {
 
   const card_1: PokerCard = { suit: 'D', rank: '10' };
@@ -27,11 +29,13 @@ function BoardPage() {
       <header className="App-header">
         Board Game
 
-        <div style={{ background: 'green', width: '90%', height: '300px', margin: 'auto', paddingTop: '40px', borderRadius: '10px' }} >
+        {/* <div style={{ background: 'green', width: '90%', height: '300px', margin: 'auto', paddingTop: '40px', borderRadius: '10px' }} >
           {cards.map(([card, faceUp]) => (
             ClickableCard(setCards, card, faceUp)
           ))}
-        </div>
+        </div> */}
+
+        <DnDemo />
 
       </header>
     </div>
