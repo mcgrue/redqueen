@@ -26,15 +26,12 @@ export function DnDemo() {
 
   // iterate over each containers
 
-
-
   const draggableMarkup = (
-    <ClickableCard card={{
-      suit: 'H', rank: '10'
-    }} faceUp={true} />
-    // <Draggable id="draggable">
-
-    // </Draggable>
+    <Draggable id="draggable">
+      <ClickableCard card={{
+        suit: 'H', rank: '10'
+      }} faceUp={true} />
+    </Draggable>
   );
 
   return (
