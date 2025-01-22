@@ -70,7 +70,7 @@ const Card: React.FC<CardProps> = ({ card, faceUp }) => {
   }
 
   return (
-    <div style={{ backgroundColor: 'green' }} className="PokerCard" {...extraProps} data-card-uuid={card.uuid}>
+    <div className="PokerCard" {...extraProps} data-card-uuid={card.uuid}>
       <Card style={{ height: `${height}px`, width: `${width}px` }} />
     </div>
   );
