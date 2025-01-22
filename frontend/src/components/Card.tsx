@@ -4,6 +4,8 @@ import styles from './Card.module.css';
 // @ts-ignore
 import * as deck from '@letele/playing-cards/dist/index.esm.js'
 
+import { v4 as uuidv4 } from 'uuid';
+
 // console.log(deck)
 
 const mult = 30;
@@ -76,10 +78,16 @@ const Card: React.FC<CardProps> = ({ card, faceUp }) => {
 
 export type PokerSuit = '♠' | '♣' | '♥' | '♦' | 'S' | 'C' | 'H' | 'D';
 export type PokerRank = 'A' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
+
+type PokerCardUuid = `poker-card-${string}`;
 export type PokerCard = {
   suit: PokerSuit;
   rank: PokerRank;
-  uuid?: string;
+  uuid: PokerCardUuid;
 };
+
+export const PokerCardUuid = (): PokerCardUuid => {
+  return `poker-card-${uuidv4()}`;
+}
 
 export default Card;

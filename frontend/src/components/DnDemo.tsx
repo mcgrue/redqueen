@@ -1,34 +1,28 @@
 import React, { useState } from 'react';
-import { DndContext, useSensor, useSensors } from '@dnd-kit/core';
+import { DndContext, DragEndEvent, useSensor, useSensors } from '@dnd-kit/core';
 
 import { Draggable } from './Draggable';
+import { type GameBoard } from './GameBoard';
 import { SmartPointerSensor } from './SmartPointerSensor';
-import { type PokerCard } from './Card';
+import { PokerCardUuid } from './Card';
 import DropZone from './DropZone';
-import { v4 as uuidv4 } from 'uuid';
 
-type DropZoneDef = {
-  [key: string]: {
-    color: string
-    startingCards?: PokerCard[]
-  }
-};
 
 export function DnDemo() {
-  const containers: DropZoneDef = {
+  const containers: GameBoard = {
     'Deck': {
       color: '#422'
     }, 'Hand': {
       color: '#242',
-      startingCards: [
-        { suit: 'D', rank: '10', uuid: uuidv4() },
+      cards: [
+        { suit: 'D', rank: '10', uuid: PokerCardUuid() },
       ]
     }, 'Board': {
       color: '#224'
     }
   };
 
-  const [parent, setParent] = useState(null);
+  const [board, setBoard] = useState(containers);
 
   // iterate over each containers
 
@@ -49,18 +43,29 @@ export function DnDemo() {
       <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
 
         {Object.entries(containers).map(([id, container]) => (
-          <DropZone key={id} id={id} parent={parent} color={container.color} startingCards={container.startingCards} />
+          <DropZone key={id} id={`DropZone-${id}`} color={container.color} cards={container.cards} />
         ))}
       </div>
     </DndContext>
   );
 
-  function handleDragEnd(event: any) {
-    const { over } = event;
+  function handleDragEnd(e: DragEndEvent) {
+
+    const { active, over } = e;
+    if (!over) {
+      return;
+    }
+
+    if (e.active.id === e.over?.id) {
+      return;
+    }
+
+    debugger;
+
 
     // If the item is dropped over a container, set it as the parent
     // otherwise reset the parent to `null`
-    setParent(over ? over.id : null);
+    setBoard(board);
   }
 };
 
