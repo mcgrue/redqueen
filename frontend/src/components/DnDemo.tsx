@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { DndContext } from '@dnd-kit/core';
 
-import { Droppable } from './Droppable';
 import { Draggable } from './Draggable';
 
 import DropZone from './DropZone';
