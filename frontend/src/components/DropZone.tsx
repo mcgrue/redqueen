@@ -11,7 +11,7 @@ type DropZoneProps = {
 
 export function DropZone({ id, color, cards = [] }: DropZoneProps) {
   return <Droppable key={id} id={`Droppable-${id}`}>
-    <div style={{ height: '300px', width: '300px', backgroundColor: color, borderRadius: '10px' }} id={`DropZone-${id}`} >
+    <div style={{ height: '400px', width: '300px', backgroundColor: color, borderRadius: '10px' }} id={`DropZone-${id}`} >
       <h1>{id}</h1>
       {cards.map((card) => (
         <Draggable key={`draggable-card-${card.uuid}`} id={`draggable-card-${card.uuid}`}>
