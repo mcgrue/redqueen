@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import styles from '../components/Card.module.css'
-import Card, { type PokerCard } from '../components/Card';
+import { type PokerCard } from '../components/Card';
+import ClickableCard from '../components/ClickableCard';
 
 function BoardPage() {
 
@@ -27,8 +27,6 @@ function BoardPage() {
       <header className="App-header">
         Board Game
 
-
-
         <div style={{ background: 'green', width: '90%', height: '300px', margin: 'auto', paddingTop: '40px', borderRadius: '10px' }} >
           {cards.map(([card, faceUp]) => (
             ClickableCard(setCards, card, faceUp)
@@ -41,18 +39,3 @@ function BoardPage() {
 }
 
 export default BoardPage;
-
-function ClickableCard(setCards: React.Dispatch<React.SetStateAction<[PokerCard, boolean][]>>, card: PokerCard, faceUp: boolean) {
-
-  const style = {
-    background: 'none',
-    border: 'none'
-  }
-
-  return <button style={style} onClick={() => {
-    setCards(prevCards => prevCards.map(([c, faceUp]) => c === card ? [c, !faceUp] : [c, faceUp]
-    ));
-  }}>
-    <Card card={card} faceUp={faceUp} />
-  </button>;
-}
