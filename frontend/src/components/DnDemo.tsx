@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { DndContext, DragEndEvent, useSensor, useSensors } from '@dnd-kit/core';
 
-import { Draggable } from './Draggable';
-import { type GameBoard } from './GameBoard';
+import { moveCardTo, type GameBoard, type CardPileUuid } from './GameBoard';
 import { SmartPointerSensor } from './SmartPointerSensor';
 import { PokerCardUuid } from './Card';
 import DropZone from './DropZone';
@@ -42,7 +41,7 @@ export function DnDemo() {
     <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
       <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
 
-        {Object.entries(containers).map(([id, container]) => (
+        {Object.entries(board).map(([id, container]) => (
           <DropZone key={id} id={`DropZone-${id}`} color={container.color} cards={container.cards} />
         ))}
       </div>
@@ -60,12 +59,14 @@ export function DnDemo() {
       return;
     }
 
-    debugger;
+    const card_uuid = (e.active.id as string).split('draggable-card-')[1] as PokerCardUuid;
+    const pile_id = (e.over?.id as string).split('Droppable-DropZone-')[1] as CardPileUuid;
 
+    const new_board = moveCardTo(card_uuid, pile_id, board);
 
     // If the item is dropped over a container, set it as the parent
     // otherwise reset the parent to `null`
-    setBoard(board);
+    setBoard(new_board);
   }
 };
 
