@@ -79,7 +79,8 @@ const Card: React.FC<CardProps> = ({ card, faceUp }) => {
 export type PokerSuit = '♠' | '♣' | '♥' | '♦' | 'S' | 'C' | 'H' | 'D';
 export type PokerRank = 'A' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | 'J' | 'Q' | 'K';
 
-type PokerCardUuid = `poker-card-${string}`;
+export type PokerCardUuid = `poker-card-${string}`;
+
 export type PokerCard = {
   suit: PokerSuit;
   rank: PokerRank;

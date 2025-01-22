@@ -10,14 +10,14 @@ import DropZone from './DropZone';
 
 export function DnDemo() {
   const containers: GameBoard = {
-    'Deck': {
+    'card-pile-Deck': {
       color: '#422'
-    }, 'Hand': {
+    }, 'card-pile-Hand': {
       color: '#242',
       cards: [
         { suit: 'D', rank: '10', uuid: PokerCardUuid() },
       ]
-    }, 'Board': {
+    }, 'card-pile-Board': {
       color: '#224'
     }
   };
