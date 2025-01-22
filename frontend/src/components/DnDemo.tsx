@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DndContext, DragEndEvent, useSensor, useSensors } from '@dnd-kit/core';
 
-import { moveCardTo, type GameBoard, type CardPileUuid } from './GameBoard';
+import { findParentPileIdx, moveCardTo, type GameBoard, type CardPileUuid } from './GameBoard';
 import { SmartPointerSensor } from './SmartPointerSensor';
 import { PokerCardUuid } from './Card';
 import DropZone from './DropZone';
@@ -10,7 +10,10 @@ import DropZone from './DropZone';
 export function DnDemo() {
   const containers: GameBoard = {
     'card-pile-Deck': {
-      color: '#422'
+      color: '#422',
+      cards: [
+        { suit: 'H', rank: 'Q', uuid: PokerCardUuid() },
+      ]
     }, 'card-pile-Hand': {
       color: '#242',
       cards: [
@@ -55,14 +58,15 @@ export function DnDemo() {
       return;
     }
 
-    if (e.active.id === e.over?.id) {
+    const card_uuid = (e.active.id as string).split('draggable-card-')[1] as PokerCardUuid;
+    const new_pile_id = (e.over?.id as string).split('Droppable-DropZone-')[1] as CardPileUuid;
+    const current_pile_id = findParentPileIdx(card_uuid, board);
+
+    if (current_pile_id === new_pile_id) {
       return;
     }
 
-    const card_uuid = (e.active.id as string).split('draggable-card-')[1] as PokerCardUuid;
-    const pile_id = (e.over?.id as string).split('Droppable-DropZone-')[1] as CardPileUuid;
-
-    const new_board = moveCardTo(card_uuid, pile_id, board);
+    const new_board = moveCardTo(card_uuid, new_pile_id, board);
 
     // If the item is dropped over a container, set it as the parent
     // otherwise reset the parent to `null`
