@@ -4,16 +4,16 @@ import { Route, Routes } from "react-router";
 
 import MainLayout from './layout/MainLayout';
 
-import AboutPage from './pages/about';
-import ProfilePage from './pages/profile';
-import HomePage from './pages/___home';
+import AboutPage from './pages/BoardPage';
+import ProfilePage from './pages/ProfilePage';
+import HomePage from './pages/HomePage';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
+        <Route path="/board" element={<AboutPage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Route>
     </Routes>
