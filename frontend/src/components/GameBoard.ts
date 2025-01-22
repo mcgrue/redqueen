@@ -1,38 +1,36 @@
 import {type PokerCard} from './Card';
 
+
+type CardPileUuid = `card-pile-${string}`;
+
+type HexColor = `#${string}`;
+
 export type GameBoard = {
-  [key: string]: {
-    color: string
+  [key: CardPileUuid]: {
+    color: HexColor
     cards?: PokerCard[]
   }
 };
 
-// const boardAfterMove = (board: GameBoard, card: PokerCard,  ): GameBoard => {
-//   const {from, to, card} = move;
-//   const fromColumn = board[from];
-//   const toColumn = board[to];
-//   if (!fromColumn || !toColumn) {
-//     return board;
-//   }
-//   const fromCards = fromColumn.cards || [];
-//   const toCards = toColumn.cards || [];
-//   const fromCardsAfterMove = fromCards.filter(c => c !== card);
-//   const toCardsAfterMove = [...toCards, card];
-//   return {
-//     ...board,
-//     [from]: {
-//       ...fromColumn,
-//       cards: fromCardsAfterMove
-//     },
-//     [to]: {
-//       ...toColumn,
-//       cards: toCardsAfterMove
-//     }
-//   };
-// };
 
-// export MoveCardFromTo = {
-//   from: string,
-//   to: string,
-//   card: PokerCard
-// }
+const MoveCardTo = (card: PokerCard, to: CardPileUuid, board: GameBoard): GameBoard => {
+  if(!board[to]) {
+    return board;
+  }
+
+  // find the id of the board with the card, else return false
+  const from = Object.keys(board).find((pile) => {
+    const idx = pile as CardPileUuid;
+    if(!idx) {
+      return false;
+    }
+    if( board[idx].cards?.find((c) => c.uuid === card.uuid) )
+    {
+      return idx;
+    }
+  });
+
+  console.log(from);
+
+
+};
