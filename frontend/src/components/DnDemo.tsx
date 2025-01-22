@@ -4,9 +4,28 @@ import { DndContext } from '@dnd-kit/core';
 import { Droppable } from './Droppable';
 import { Draggable } from './Draggable';
 
+import DropZone from './DropZone';
+
+type DropZoneDef = {
+  [key: string]: { color: string }
+};
+
 export function DnDemo() {
-  const containers = ['A', 'B', 'C'];
+  const containers: DropZoneDef = {
+    'Deck': {
+      color: '#422'
+    }, 'Hand': {
+      color: '#242'
+    }, 'Board': {
+      color: '#224'
+    }
+  };
+
   const [parent, setParent] = useState(null);
+
+  // iterate over each containers
+
+
 
   const draggableMarkup = (
     <Draggable id="draggable">Drag me</Draggable>
@@ -16,13 +35,12 @@ export function DnDemo() {
     <DndContext onDragEnd={handleDragEnd}>
       {parent === null ? draggableMarkup : null}
 
-      {containers.map((id) => (
-        // We updated the Droppable component so it would accept an `id`
-        // prop and pass it to `useDroppable`
-        <Droppable key={id} id={id}>
-          {parent === id ? draggableMarkup : 'Drop here'}
-        </Droppable>
-      ))}
+      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
+
+        {Object.entries(containers).map(([id, container]) => (
+          <DropZone key={id} id={id} parent={parent} color={container.color} draggableMarkup={draggableMarkup} />
+        ))}
+      </div>
     </DndContext>
   );
 
@@ -36,3 +54,4 @@ export function DnDemo() {
 };
 
 export default DnDemo;
+
