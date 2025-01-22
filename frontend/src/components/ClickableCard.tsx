@@ -1,7 +1,15 @@
 
+import { useState } from "react";
 import Card, { type PokerCard } from "./Card";
 
-export function ClickableCard(setCards: React.Dispatch<React.SetStateAction<[PokerCard, boolean][]>>, card: PokerCard, faceUp: boolean) {
+type ClickableCardProps = {
+  card: PokerCard;
+  faceUp: boolean;
+};
+
+export function ClickableCard({ card, faceUp }: ClickableCardProps) {
+
+  const [visible, setVisible] = useState(faceUp);
 
   const style = {
     background: 'none',
@@ -9,10 +17,9 @@ export function ClickableCard(setCards: React.Dispatch<React.SetStateAction<[Pok
   }
 
   return <button style={style} onClick={() => {
-    setCards(prevCards => prevCards.map(([c, faceUp]) => c === card ? [c, !faceUp] : [c, faceUp]
-    ));
+    setVisible(!visible);
   }}>
-    <Card card={card} faceUp={faceUp} />
+    <Card card={card} faceUp={visible} />
   </button>;
 }
 

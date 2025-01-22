@@ -3,6 +3,8 @@ import { DndContext } from '@dnd-kit/core';
 
 import { Draggable } from './Draggable';
 
+import ClickableCard from './ClickableCard';
+
 import DropZone from './DropZone';
 
 type DropZoneDef = {
@@ -27,7 +29,12 @@ export function DnDemo() {
 
 
   const draggableMarkup = (
-    <Draggable id="draggable">Drag me</Draggable>
+    <ClickableCard card={{
+      suit: 'H', rank: '10'
+    }} faceUp={true} />
+    // <Draggable id="draggable">
+
+    // </Draggable>
   );
 
   return (
