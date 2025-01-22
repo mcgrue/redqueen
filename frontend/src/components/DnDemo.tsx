@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { DndContext } from '@dnd-kit/core';
+import { DndContext, useSensor, useSensors } from '@dnd-kit/core';
 
 import { Draggable } from './Draggable';
-
+import { SmartPointerSensor } from './SmartPointerSensor';
 import ClickableCard from './ClickableCard';
-
 import DropZone from './DropZone';
 
 type DropZoneDef = {
@@ -34,8 +33,13 @@ export function DnDemo() {
     </Draggable>
   );
 
+  // todo: keyboard sensor?
+  const sensors = useSensors(
+    useSensor(SmartPointerSensor),
+  );
+
   return (
-    <DndContext onDragEnd={handleDragEnd}>
+    <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
       {parent === null ? draggableMarkup : null}
 
       <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
