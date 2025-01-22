@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
 import { DndContext, DragEndEvent, useSensor, useSensors } from '@dnd-kit/core';
 
-import { findParentPileIdx, moveCardTo, type GameBoard, type CardPileUuid } from './GameBoard';
+import { CardPileId, findParentPileIdx, moveCardTo, type GameBoard, type CardPileUuid } from './GameBoard';
 import { SmartPointerSensor } from './SmartPointerSensor';
 import { PokerCardUuid } from './Card';
 import DropZone from './DropZone';
 
 
 export function DnDemo() {
-  const containers: GameBoard = {
-    'card-pile-Deck': {
-      color: '#422',
-      cards: [
-        { suit: 'H', rank: 'Q', uuid: PokerCardUuid() },
-      ]
-    }, 'card-pile-Hand': {
-      color: '#242',
-      cards: [
-        { suit: 'D', rank: '10', uuid: PokerCardUuid() },
-        { suit: 'S', rank: '3', uuid: PokerCardUuid() },
-      ]
-    }, 'card-pile-Board': {
-      color: '#224'
-    }
+
+  let start: GameBoard = {};
+  const deck = CardPileId('Deck');
+  start[deck] = {
+    cards: [],
+    color: '#422',
+  };
+  const hand = CardPileId('Hand');
+  start[hand] = {
+    cards: [],
+    color: '#242',
+  };
+  const field = CardPileId('Field');
+  start[field] = {
+    cards: [
+      { rank: 'A', suit: '♠', uuid: 'poker-card-1' },
+    ],
+    color: '#224',
   };
 
-  const [board, setBoard] = useState(containers);
+  const [board, setBoard] = useState(start);
 
   // iterate over each containers
 

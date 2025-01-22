@@ -6,8 +6,6 @@ import * as deck from '@letele/playing-cards/dist/index.esm.js'
 
 import { v4 as uuidv4 } from 'uuid';
 
-// console.log(deck)
-
 const mult = 30;
 
 const width = 5 * mult;

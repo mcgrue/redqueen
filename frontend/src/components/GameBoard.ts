@@ -2,6 +2,10 @@ import {type PokerCard, type PokerCardUuid} from './Card';
 
 export type CardPileUuid = `card-pile-${string}`;
 
+export function CardPileId(name:string) : CardPileUuid {
+  return `card-pile-${name}`;
+}
+
 type HexColor = `#${string}`;
 
 export type GameBoard = {

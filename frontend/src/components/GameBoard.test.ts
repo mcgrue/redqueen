@@ -1,7 +1,12 @@
-import { moveCardTo, findParentPileIdx, type GameBoard } from './GameBoard';
+import { CardPileId, moveCardTo, findParentPileIdx, type GameBoard } from './GameBoard';
 
 // test
 describe('GameBoard', () => {
+
+  it('can make an id', () => {
+    const result = CardPileId('Deck');
+    expect(result).toBe('card-pile-Deck');
+  });
 
   it('can find the parent pile of a card', () => {
     const inputBoard: GameBoard = {
