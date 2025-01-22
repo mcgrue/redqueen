@@ -11,21 +11,23 @@ type DropZoneProps = {
   cards?: any[];
 };
 
+let top = 0;
+
 export function DropZone({ id, color, cards = [] }: DropZoneProps) {
   return <Droppable key={id} id={`Droppable-${id}`}>
 
-    <div className={styles.CardStackWrapper} style={{ backgroundColor: color }} id={`DropZone-${id}`} >
+    <div className={styles.CardStackWrapper} style={{ backgroundColor: color }} >
       <h1>{id}</h1>
       <div className={styles.CardStack}>
         {cards.map((card) => (
-          <Draggable key={`draggable-card-${card.uuid}`} id={`draggable-card-${card.uuid}`}>
-            <ClickableCard card={card} faceUp={true} />
+          <Draggable key={`draggable-card-${card.uuid}`} id={`draggable-card-${card.uuid}`} style={{ top: `${top}px` }}>
+            <ClickableCard card={card} faceUp={true} top={top} />
           </Draggable>
         ))}
       </div>
     </div>
 
-  </Droppable>;
+  </Droppable >;
 }
 
 export default DropZone;

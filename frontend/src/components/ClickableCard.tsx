@@ -7,6 +7,7 @@ import styles from './DropZone.module.css';
 type ClickableCardProps = {
   card: PokerCard;
   faceUp: boolean;
+  top: number;
 };
 
 export function ClickableCard({ card, faceUp }: ClickableCardProps) {
@@ -15,7 +16,7 @@ export function ClickableCard({ card, faceUp }: ClickableCardProps) {
 
   const style = {
     background: 'none',
-    border: 'none'
+    border: 'none',
   }
 
   return <div className={styles.CardWrapper}>
