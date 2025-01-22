@@ -1,6 +1,7 @@
 
 import { useState } from "react";
-import Card, { type PokerCard } from "./Card";
+import Card from "./Card";
+import { type PokerCard } from "./PokerDeck";
 
 import styles from './DropZone.module.css';
 

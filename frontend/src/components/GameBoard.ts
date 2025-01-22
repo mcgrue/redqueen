@@ -1,4 +1,4 @@
-import {type PokerCard, type PokerCardUuid} from './Card';
+import {type PokerCard, type PokerCardUuid} from './PokerDeck';
 
 export type CardPileUuid = `card-pile-${string}`;
 

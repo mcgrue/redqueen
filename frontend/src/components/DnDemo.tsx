@@ -3,7 +3,7 @@ import { DndContext, DragEndEvent, useSensor, useSensors } from '@dnd-kit/core';
 
 import { CardPileId, findParentPileIdx, moveCardTo, type GameBoard, type CardPileUuid } from './GameBoard';
 import { SmartPointerSensor } from './SmartPointerSensor';
-import { PokerCardUuid } from './Card';
+import { PokerCardUuid } from './PokerDeck';
 import DropZone from './DropZone';
 
 

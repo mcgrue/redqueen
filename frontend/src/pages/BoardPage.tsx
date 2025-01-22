@@ -1,8 +1,3 @@
-import React, { useState } from 'react';
-
-import { type PokerCard } from '../components/Card';
-import ClickableCard from '../components/ClickableCard';
-
 import { DnDemo } from '../components/DnDemo';
 
 function BoardPage() {
