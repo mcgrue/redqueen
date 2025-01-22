@@ -18,6 +18,7 @@ export function DnDemo() {
       color: '#242',
       cards: [
         { suit: 'D', rank: '10', uuid: PokerCardUuid() },
+        { suit: 'S', rank: '3', uuid: PokerCardUuid() },
       ]
     }, 'card-pile-Board': {
       color: '#224'

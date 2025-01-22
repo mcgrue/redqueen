@@ -60,6 +60,8 @@ const Card: React.FC<CardProps> = ({ card, faceUp }) => {
 
   const Card = deck[idx];
 
+
+
   let extraProps: any = {};
   if (faceUp) {
     extraProps['data-rank'] = card.rank;
@@ -70,7 +72,7 @@ const Card: React.FC<CardProps> = ({ card, faceUp }) => {
   }
 
   return (
-    <div className="PokerCard" {...extraProps} data-card-uuid={card.uuid}>
+    <div className={styles.PokerCard} {...extraProps} data-card-uuid={card.uuid}>
       <Card style={{ height: `${height}px`, width: `${width}px` }} />
     </div>
   );

@@ -1,16 +1,11 @@
-/* .card {
-  width: 100px;
-  height: 150px;
-  border: 1px solid #000;
-  border-radius: 10px;
-  background-color: white;
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  color: black;
-} */
+.PokerCard {
+  padding: 3px;
+  margin: 2px;
+  border-style: none;
+  /* transform: rotate(3deg); */
+  /*makes it easier to see the overlap*/
+}
+
 
 .ClickableCard {
   /*

@@ -2,6 +2,8 @@
 import { useState } from "react";
 import Card, { type PokerCard } from "./Card";
 
+import styles from './DropZone.module.css';
+
 type ClickableCardProps = {
   card: PokerCard;
   faceUp: boolean;
@@ -16,11 +18,13 @@ export function ClickableCard({ card, faceUp }: ClickableCardProps) {
     border: 'none'
   }
 
-  return <button style={style} onClick={() => {
-    setVisible(!visible);
-  }}>
-    <Card card={card} faceUp={visible} />
-  </button>;
+  return <div className={styles.CardWrapper}>
+    <button style={style} onClick={() => {
+      setVisible(!visible);
+    }}>
+      <Card card={card} faceUp={visible} />
+    </button>
+  </div>;
 }
 
 export default ClickableCard;
