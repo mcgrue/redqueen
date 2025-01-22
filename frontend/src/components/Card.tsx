@@ -68,7 +68,7 @@ const Card: React.FC<CardProps> = ({ card, faceUp }) => {
   }
 
   return (
-    <div style={{ backgroundColor: 'green' }} className="PokerCard" {...extraProps}>
+    <div style={{ backgroundColor: 'green' }} className="PokerCard" {...extraProps} data-card-uuid={card.uuid}>
       <Card style={{ height: `${height}px`, width: `${width}px` }} />
     </div>
   );
@@ -79,6 +79,7 @@ export type PokerRank = 'A' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '1
 export type PokerCard = {
   suit: PokerSuit;
   rank: PokerRank;
+  uuid?: string;
 };
 
 export default Card;

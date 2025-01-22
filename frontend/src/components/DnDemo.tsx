@@ -3,11 +3,15 @@ import { DndContext, useSensor, useSensors } from '@dnd-kit/core';
 
 import { Draggable } from './Draggable';
 import { SmartPointerSensor } from './SmartPointerSensor';
-import ClickableCard from './ClickableCard';
+import { type PokerCard } from './Card';
 import DropZone from './DropZone';
+import { v4 as uuidv4 } from 'uuid';
 
 type DropZoneDef = {
-  [key: string]: { color: string }
+  [key: string]: {
+    color: string
+    startingCards?: PokerCard[]
+  }
 };
 
 export function DnDemo() {
@@ -15,7 +19,10 @@ export function DnDemo() {
     'Deck': {
       color: '#422'
     }, 'Hand': {
-      color: '#242'
+      color: '#242',
+      startingCards: [
+        { suit: 'D', rank: '10', uuid: uuidv4() },
+      ]
     }, 'Board': {
       color: '#224'
     }
@@ -25,17 +32,12 @@ export function DnDemo() {
 
   // iterate over each containers
 
-  const draggableMarkup = (
-    <Draggable id="draggable">
-      <ClickableCard card={{
-        suit: 'H', rank: '10'
-      }} faceUp={true} />
-    </Draggable>
-  );
-
   // todo: keyboard sensor?
   const sensors = useSensors(
+
     useSensor(SmartPointerSensor, {
+      // this is what gets clicks to prop through if not dragged
+      // https://github.com/clauderic/dnd-kit/issues/591
       activationConstraint: {
         distance: 8,
       },
@@ -44,12 +46,10 @@ export function DnDemo() {
 
   return (
     <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
-      {parent === null ? draggableMarkup : null}
-
       <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
 
         {Object.entries(containers).map(([id, container]) => (
-          <DropZone key={id} id={id} parent={parent} color={container.color} draggableMarkup={draggableMarkup} />
+          <DropZone key={id} id={id} parent={parent} color={container.color} startingCards={container.startingCards} />
         ))}
       </div>
     </DndContext>
