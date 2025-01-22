@@ -35,7 +35,11 @@ export function DnDemo() {
 
   // todo: keyboard sensor?
   const sensors = useSensors(
-    useSensor(SmartPointerSensor),
+    useSensor(SmartPointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    })
   );
 
   return (
