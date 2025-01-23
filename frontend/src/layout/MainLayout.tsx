@@ -9,7 +9,7 @@ function MainLayout() {
   return (
     <div className={styles.App}>
       <header className={styles.header}>
-        <h1>Red Queen</h1>
+        <h1 style={{ color: "red" }}>Red Queen</h1>
         <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
@@ -21,7 +21,7 @@ function MainLayout() {
       <main className={styles.main}>
         <Outlet />
       </main>
-    </div>
+    </div >
   );
 }
 
