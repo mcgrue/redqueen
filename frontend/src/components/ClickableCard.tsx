@@ -8,7 +8,6 @@ import styles from './DropZone.module.css';
 type ClickableCardProps = {
   card: PokerCard;
   faceUp: boolean;
-  top: number;
 };
 
 export function ClickableCard({ card, faceUp }: ClickableCardProps) {
