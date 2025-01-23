@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Card from "./Card";
 import { type PokerCard } from "./PokerDeck";
 
@@ -12,6 +12,9 @@ type ClickableCardProps = {
 
 export function ClickableCard({ card, faceUp }: ClickableCardProps) {
 
+  // https://react.dev/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback
+  const itemsRef = useRef(null);
+
   const [curCard, updateCard] = useState(card);
   const [visible, setVisible] = useState(!!curCard.faceUp);
 
@@ -20,7 +23,11 @@ export function ClickableCard({ card, faceUp }: ClickableCardProps) {
     border: 'none',
   }
 
-  return <div className={styles.CardWrapper}>
+  return <div className={styles.CardWrapper} ref={
+    (node: any) => {
+      card.ref = node;
+    }
+  }>
     <button style={style} onClick={() => {
       curCard.faceUp = !curCard.faceUp;
       setVisible(curCard.faceUp);

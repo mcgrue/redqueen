@@ -9,6 +9,7 @@ export type PokerCard = {
   rank: PokerRank;
   uuid: PokerCardUuid;
   faceUp?: boolean;
+  ref? : React.RefObject<HTMLDivElement>;
 };
 
 export const makePokerCardUuid = (): PokerCardUuid => {
@@ -22,7 +23,7 @@ export const makePokerDeck = (faceUp:boolean = true): PokerCard[] => {
   let deck: PokerCard[] = [];
   for (let suit of suits) {
     for (let rank of ranks) {
-      deck.push({ suit, rank, uuid: makePokerCardUuid(), faceUp});
+      deck.push({ suit, rank, uuid: makePokerCardUuid(), faceUp, ref:undefined});
     }
   }
 
