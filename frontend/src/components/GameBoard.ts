@@ -29,6 +29,20 @@ export const findParentPileIdx = (card: PokerCardUuid, board: GameBoard): CardPi
   return false;
 };
 
+export const getCardById = (card: PokerCardUuid, board: GameBoard): PokerCard | false => {
+  for (const [pile, { cards }] of Object.entries(board)) {
+    if (!cards) {
+      continue;
+    }
+    const found = cards.find((c) => c.uuid === card);
+    if (found) {
+      return found;
+    }
+  }
+
+  return false;
+}
+
 export const moveCardTo = (card: PokerCardUuid, to: CardPileUuid, board: GameBoard): GameBoard => {
   if(!board[to]) {
     return board;
