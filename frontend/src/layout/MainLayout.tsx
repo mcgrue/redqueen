@@ -9,7 +9,7 @@ function MainLayout() {
   return (
     <div className={styles.App}>
       <header className={styles.header}>
-        <h1>My App</h1>
+        <h1>Red Queen</h1>
         <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
