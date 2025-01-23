@@ -11,17 +11,24 @@
   border-radius: 10px;
 }
 
-.CardStack {
+.LooserStack {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.CardStack button {
-  /* Create spacing between elements, negative margin for overlap */
+.LooserStack button {
   margin-bottom: -50%;
-  /* This creates 50% overlap */
-
   transform: rotate(2deg);
+}
 
+.DeckStack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.DeckStack button {
+  margin-bottom: -73%;
+  transform: rotate(2deg);
 }

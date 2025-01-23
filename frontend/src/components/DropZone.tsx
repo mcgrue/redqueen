@@ -14,12 +14,13 @@ type DropZoneProps = {
 export function DropZone({ id, color, cards = [] }: DropZoneProps) {
 
   const h1 = id.replaceAll('DropZone-card-pile-', '');
+  const innerClass = h1 == 'Deck' ? styles.DeckStack : styles.LooserStack;
 
   return <Droppable key={id} id={`Droppable-${id}`}>
 
     <div className={styles.CardStackWrapper} style={{ backgroundColor: color }} >
       <h1>{h1}</h1>
-      <div className={styles.CardStack}>
+      <div className={innerClass}>
         {cards.map((card) => (
           <Draggable key={`draggable-card-${card.uuid}`} id={`draggable-card-${card.uuid}`} >
             <ClickableCard card={card} faceUp={card.faceUp} />
