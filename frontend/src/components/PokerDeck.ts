@@ -8,20 +8,21 @@ export type PokerCard = {
   suit: PokerSuit;
   rank: PokerRank;
   uuid: PokerCardUuid;
+  faceUp?: boolean;
 };
 
 export const makePokerCardUuid = (): PokerCardUuid => {
   return `poker-card-${uuidv4()}`;
 }
 
-export const makePokerDeck = (): PokerCard[] => {
+export const makePokerDeck = (faceUp:boolean = true): PokerCard[] => {
   const suits:PokerSuit[] = ['♠', '♣', '♥', '♦'];
   const ranks:PokerRank[] = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
   let deck: PokerCard[] = [];
   for (let suit of suits) {
     for (let rank of ranks) {
-      deck.push({ suit, rank, uuid: makePokerCardUuid()});
+      deck.push({ suit, rank, uuid: makePokerCardUuid(), faceUp});
     }
   }
 

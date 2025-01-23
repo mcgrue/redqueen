@@ -3,7 +3,7 @@ import { DndContext, DragEndEvent, useSensor, useSensors } from '@dnd-kit/core';
 
 import { CardPileId, findParentPileIdx, moveCardTo, type GameBoard, type CardPileUuid } from './GameBoard';
 import { SmartPointerSensor } from './SmartPointerSensor';
-import { PokerCardUuid } from './PokerDeck';
+import { makePokerDeck, PokerCardUuid } from './PokerDeck';
 import DropZone from './DropZone';
 
 
@@ -12,7 +12,7 @@ export function DnDemo() {
   let start: GameBoard = {};
   const deck = CardPileId('Deck');
   start[deck] = {
-    cards: [],
+    cards: makePokerDeck(false),
     color: '#422',
   };
   const hand = CardPileId('Hand');
@@ -23,7 +23,6 @@ export function DnDemo() {
   const field = CardPileId('Field');
   start[field] = {
     cards: [
-      { rank: 'A', suit: '♠', uuid: 'poker-card-1' },
     ],
     color: '#224',
   };

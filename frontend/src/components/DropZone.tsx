@@ -21,7 +21,7 @@ export function DropZone({ id, color, cards = [] }: DropZoneProps) {
       <div className={styles.CardStack}>
         {cards.map((card) => (
           <Draggable key={`draggable-card-${card.uuid}`} id={`draggable-card-${card.uuid}`} style={{ top: `${top}px` }}>
-            <ClickableCard card={card} faceUp={true} top={top} />
+            <ClickableCard card={card} faceUp={card.faceUp} top={top} />
           </Draggable>
         ))}
       </div>
