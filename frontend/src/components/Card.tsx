@@ -58,8 +58,6 @@ const Card: React.FC<CardProps> = ({ card, faceUp }) => {
 
   const Card = deck[idx];
 
-
-
   let extraProps: any = {};
   if (faceUp) {
     extraProps['data-rank'] = card.rank;

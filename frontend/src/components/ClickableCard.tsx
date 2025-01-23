@@ -13,7 +13,8 @@ type ClickableCardProps = {
 
 export function ClickableCard({ card, faceUp }: ClickableCardProps) {
 
-  const [visible, setVisible] = useState(faceUp);
+  const [curCard, updateCard] = useState(card);
+  const [visible, setVisible] = useState(!!curCard.faceUp);
 
   const style = {
     background: 'none',
@@ -22,9 +23,11 @@ export function ClickableCard({ card, faceUp }: ClickableCardProps) {
 
   return <div className={styles.CardWrapper}>
     <button style={style} onClick={() => {
-      setVisible(!visible);
+      curCard.faceUp = !curCard.faceUp;
+      setVisible(curCard.faceUp);
+      updateCard(curCard);
     }}>
-      <Card card={card} faceUp={visible} />
+      <Card card={curCard} faceUp={visible} />
     </button>
   </div>;
 }
