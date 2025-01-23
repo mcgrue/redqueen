@@ -12,10 +12,13 @@ type DropZoneProps = {
 };
 
 export function DropZone({ id, color, cards = [] }: DropZoneProps) {
+
+  const h1 = id.replaceAll('DropZone-card-pile-', '');
+
   return <Droppable key={id} id={`Droppable-${id}`}>
 
     <div className={styles.CardStackWrapper} style={{ backgroundColor: color }} >
-      <h1>{id}</h1>
+      <h1>{h1}</h1>
       <div className={styles.CardStack}>
         {cards.map((card) => (
           <Draggable key={`draggable-card-${card.uuid}`} id={`draggable-card-${card.uuid}`} >
