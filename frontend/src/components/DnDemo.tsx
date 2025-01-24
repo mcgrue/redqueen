@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { DndContext, DragEndEvent, useSensor, useSensors } from '@dnd-kit/core';
-
-import { CardPileId, findParentPileIdx, moveCardTo, type GameBoard, type CardPileUuid } from './GameBoard';
+import { DndContext, DragEndEvent, DragOverlay, useSensor, useSensors } from '@dnd-kit/core';
+import {
+  restrictToWindowEdges,
+} from '@dnd-kit/modifiers';
+import { CardPileId, findParentPileIdx, getCardById, moveCardTo, type GameBoard, type CardPileUuid } from './GameBoard';
 import { SmartPointerSensor } from './SmartPointerSensor';
-import { makePokerDeck, PokerCardUuid } from './PokerDeck';
+import { makePokerDeck, PokerCardUuid, type PokerCard } from './PokerDeck';
 import DropZone from './DropZone';
+import { SvgLeteleCard, Joker } from './SvgLeteleCard';
 
 
 export function DnDemo() {
@@ -28,6 +31,8 @@ export function DnDemo() {
   };
 
   const [board, setBoard] = useState(start);
+  //const activeRef = useRef<HTMLDivElement | null>(null);
+  const [lastActiveDragElement, setLastActiveDragElement] = useState<PokerCard | null>(null);
 
   // iterate over each containers
 
@@ -43,16 +48,21 @@ export function DnDemo() {
     })
   );
 
-  return (
-    <DndContext onDragEnd={handleDragEnd} sensors={sensors}>
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
+  function handleDragStart(e: DragEndEvent) {
+    const { active } = e;
 
-        {Object.entries(board).map(([id, container]) => (
-          <DropZone key={id} id={`DropZone-${id}`} color={container.color} cards={container.cards} />
-        ))}
-      </div>
-    </DndContext>
-  );
+    const id = (active.id as string).split('draggable-card-')[1] as PokerCardUuid;
+    const card = getCardById(id, board);
+
+    console.log('card_id: ', id, ' found?: ', card !== false);
+
+    if (card) {
+      console.log('setLastActiveDragElement: ', card);
+      setLastActiveDragElement(card);
+    } else {
+      console.log('no card!');
+    }
+  }
 
   function handleDragEnd(e: DragEndEvent) {
 
@@ -75,6 +85,26 @@ export function DnDemo() {
     // otherwise reset the parent to `null`
     setBoard(new_board);
   }
+
+  return (
+    <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart} sensors={sensors}>
+      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
+
+        {Object.entries(board).map(([id, container]) => (
+          <DropZone key={id} id={`DropZone-${id}`} color={container.color} cards={container.cards} />
+        ))}
+      </div>
+
+      <DragOverlay zIndex={999999999999999} modifiers={[restrictToWindowEdges]} dropAnimation={{
+        duration: 500,
+        easing: 'cubic-bezier(0.18, 0.67, 0.6, 1.22)',
+      }}>
+        <div style={{ transform: 'rotate(2deg)' }}>
+          {lastActiveDragElement ? <SvgLeteleCard card={lastActiveDragElement} /> : <Joker />}
+        </div>
+      </DragOverlay>
+    </DndContext >
+  );
 };
 
 export default DnDemo;

@@ -12,7 +12,6 @@ function BoardPage() {
         Board Game
 
         <DnDemo />
-
       </header>
     </div>
   );

@@ -29,17 +29,20 @@ export const findParentPileIdx = (card: PokerCardUuid, board: GameBoard): CardPi
   return false;
 };
 
-export const getCardById = (card: PokerCardUuid, board: GameBoard): PokerCard | false => {
-  Object.keys(board).forEach((key) => {
+export const getCardById = (card_idx: PokerCardUuid, board: GameBoard): PokerCard | false => {
+  
+  const keys = Object.keys(board);
+  for(let i = 0; i < keys.length; i++) {
+    const key = keys[i];
     const cards = board[key as CardPileUuid].cards;
-
-    if (cards !== undefined) {
-      const found = cards.find((c) => c.uuid === card);
-      if (found) {
-        return found;
-      }
+    if(cards === undefined) {
+      continue;
     }
-  });
+    const found = cards.find((c) => c.uuid === card_idx);
+    if(found) {
+      return found;
+    }
+  }
 
   return false;
 }

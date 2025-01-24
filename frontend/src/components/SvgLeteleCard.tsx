@@ -48,18 +48,17 @@ The naming convention for card components is a combination of the suit and rank 
  */
 type LeteleIdx = 'Ha' | 'H1' | 'H2' | 'H3' | 'H4' | 'H5' | 'H6' | 'H7' | 'H8' | 'H9' | 'H10' | 'Hj' | 'Hq' | 'Hk' | 'Da' | 'D1' | 'D2' | 'D3' | 'D4' | 'D5' | 'D6' | 'D7' | 'D8' | 'D9' | 'D10' | 'Dj' | 'Dq' | 'Dk' | 'Ca' | 'C1' | 'C2' | 'C3' | 'C4' | 'C5' | 'C6' | 'C7' | 'C8' | 'C9' | 'C10' | 'Cj' | 'Cq' | 'Ck' | 'Sa' | 'S1' | 'S2' | 'S3' | 'S4' | 'S5' | 'S6' | 'S7' | 'S8' | 'S9' | 'S10' | 'Sj' | 'Sq' | 'Sk' | 'B1' | 'B2' | 'J1' | 'J2';
 
-interface CardProps {
+type SvgLeteleCardProps = {
   card: PokerCard;
-  faceUp: boolean;
-}
+};
 
-const SvgLeteleCard: React.FC<CardProps> = ({ card, faceUp }) => {
-  const idx = faceUp ? toLeteleIdx(card) : 'B2';
+export const SvgLeteleCard: React.FC<SvgLeteleCardProps> = ({ card }: SvgLeteleCardProps) => {
+  const idx = card.faceUp ? toLeteleIdx(card) : 'B2';
 
   const CardArt = deck[idx];
 
   let extraProps: any = {};
-  if (faceUp) {
+  if (card.faceUp) {
     extraProps['data-rank'] = card.rank;
     extraProps['data-suit'] = card.suit;
     extraProps['data-faceup'] = 'true';
@@ -73,5 +72,36 @@ const SvgLeteleCard: React.FC<CardProps> = ({ card, faceUp }) => {
     </div>
   );
 }
+
+type JokerOptions = 1 | 2;
+
+type JokerProps = {
+  jokerIdx?: JokerOptions;
+  faceUp?: boolean;
+};
+
+export const Joker: React.FC<JokerProps> = ({ jokerIdx, faceUp }: JokerProps) => {
+
+  const jidx = jokerIdx ? jokerIdx : 1;
+  const face = !!faceUp;
+
+  const CardArt = deck[`J${jidx}`];
+
+  let extraProps: any = {};
+  if (face) {
+    extraProps['data-rank'] = 'Joker';
+    extraProps['data-suit'] = 'Joker';
+    extraProps['data-faceup'] = 'true';
+  } else {
+    extraProps['data-faceup'] = 'false';
+  }
+
+  return (
+    <div className={styles.PokerCard} {...extraProps} data-card-uuid={'Jooooooker?'}>
+      <CardArt style={{ height: `${height}px`, width: `${width}px` }} />
+    </div>
+  );
+}
+
 
 export default SvgLeteleCard;
