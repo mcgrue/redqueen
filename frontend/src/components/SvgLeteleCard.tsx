@@ -1,6 +1,6 @@
 
 import React from 'react';
-import styles from './Card.module.css';
+import styles from './SvgLeteleCard.module.css';
 // @ts-ignore
 import * as deck from '@letele/playing-cards/dist/index.esm.js'
 
@@ -53,10 +53,10 @@ interface CardProps {
   faceUp: boolean;
 }
 
-const Card: React.FC<CardProps> = ({ card, faceUp }) => {
+const SvgLeteleCard: React.FC<CardProps> = ({ card, faceUp }) => {
   const idx = faceUp ? toLeteleIdx(card) : 'B2';
 
-  const Card = deck[idx];
+  const CardArt = deck[idx];
 
   let extraProps: any = {};
   if (faceUp) {
@@ -69,9 +69,9 @@ const Card: React.FC<CardProps> = ({ card, faceUp }) => {
 
   return (
     <div className={styles.PokerCard} {...extraProps} data-card-uuid={card.uuid}>
-      <Card style={{ height: `${height}px`, width: `${width}px` }} />
+      <CardArt style={{ height: `${height}px`, width: `${width}px` }} />
     </div>
   );
 }
 
-export default Card;
+export default SvgLeteleCard;
