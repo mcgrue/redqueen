@@ -1,6 +1,6 @@
 
 import { useState, useRef } from "react";
-import Card from "./SvgLeteleCard";
+import SvgLeteleCard from "./SvgLeteleCard";
 import { type PokerCard } from "./PokerDeck";
 
 import styles from './DropZone.module.css';
@@ -33,7 +33,7 @@ export function ClickableCard({ card, faceUp }: ClickableCardProps) {
       setVisible(curCard.faceUp);
       updateCard(curCard);
     }}>
-      <Card card={curCard} faceUp={visible} />
+      <SvgLeteleCard card={curCard} faceUp={visible} />
     </button>
   </div>;
 }

@@ -56,7 +56,7 @@ export function DnDemo() {
 
   function handleDragEnd(e: DragEndEvent) {
 
-    const { active, over } = e;
+    const { over } = e;
     if (!over) {
       return;
     }

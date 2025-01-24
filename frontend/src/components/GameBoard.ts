@@ -30,15 +30,16 @@ export const findParentPileIdx = (card: PokerCardUuid, board: GameBoard): CardPi
 };
 
 export const getCardById = (card: PokerCardUuid, board: GameBoard): PokerCard | false => {
-  for (const [pile, { cards }] of Object.entries(board)) {
-    if (!cards) {
-      continue;
+  Object.keys(board).forEach((key) => {
+    const cards = board[key as CardPileUuid].cards;
+
+    if (cards !== undefined) {
+      const found = cards.find((c) => c.uuid === card);
+      if (found) {
+        return found;
+      }
     }
-    const found = cards.find((c) => c.uuid === card);
-    if (found) {
-      return found;
-    }
-  }
+  });
 
   return false;
 }

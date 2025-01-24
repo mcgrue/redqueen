@@ -14,7 +14,7 @@ type DropZoneProps = {
 export function DropZone({ id, color, cards = [] }: DropZoneProps) {
 
   const h1 = id.replaceAll('DropZone-card-pile-', '');
-  const innerClass = h1 == 'Deck' ? styles.DeckStack : styles.LooserStack;
+  const innerClass = h1 === 'Deck' ? styles.DeckStack : styles.LooserStack;
 
   return <Droppable key={id} id={`Droppable-${id}`}>
 

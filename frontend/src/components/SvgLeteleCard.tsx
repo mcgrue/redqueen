@@ -4,7 +4,7 @@ import styles from './SvgLeteleCard.module.css';
 // @ts-ignore
 import * as deck from '@letele/playing-cards/dist/index.esm.js'
 
-import { type PokerCard, type PokerRank, type PokerSuit } from './PokerDeck';
+import { type PokerCard, type PokerSuit } from './PokerDeck';
 
 const mult = 30;
 
@@ -27,8 +27,8 @@ const symbolToLetter = (suit: PokerSuit) => {
 }
 
 const toLeteleIdx = (card: PokerCard): LeteleIdx => {
-  const suits = ['S', 'C', 'H', 'D'];
-  const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+  // const suits = ['S', 'C', 'H', 'D'];
+  // const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
 
   const _1 = symbolToLetter(card.suit);
   const _2 = card.rank.toLowerCase();
