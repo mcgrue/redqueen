@@ -11,6 +11,8 @@ const mult = 30;
 const width = 5 * mult;
 const height = 7 * mult;
 
+const svgStyle = { position: "absolute", width: "100%", height: "100%", top: 0, left: 0 };
+
 const symbolToLetter = (suit: PokerSuit) => {
   switch (suit) {
     case '♠':
@@ -69,7 +71,7 @@ export const SvgLeteleCard: React.FC<SvgLeteleCardProps> = ({ card }: SvgLeteleC
   return (
     <div className={styles.PokerCard} {...extraProps} data-card-uuid={card.uuid}>
       {/* <CardArt style={{ height: `${height}px`, width: `${width}px` }} /> */}
-      <CardArt />
+      <CardArt style={svgStyle} />
     </div>
   );
 }
@@ -99,7 +101,7 @@ export const Joker: React.FC<JokerProps> = ({ jokerIdx, faceUp }: JokerProps) =>
 
   return (
     <div className={styles.PokerCard} {...extraProps} data-card-uuid={'Jooooooker?'}>
-      <CardArt />
+      <CardArt style={svgStyle} />
       {/* <CardArt style={{ height: `${height}px`, width: `${width}px` }} /> */}
     </div>
   );

@@ -10,6 +10,7 @@ export function Draggable(props: any) {
     background: 'none',
     border: 'none',
     position: 'relative',
+    width: '100%',
   }
   if (transform) {
     buttonStyle['transform'] = `translate3d(${transform.x}px, ${transform.y}px, 0)`;

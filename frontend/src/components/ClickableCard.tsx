@@ -23,6 +23,7 @@ export function ClickableCard({ card }: ClickableCardProps) {
   const style = {
     background: 'none',
     border: 'none',
+    width: '100%',
   }
 
   return <div className={styles.CardWrapper} ref={

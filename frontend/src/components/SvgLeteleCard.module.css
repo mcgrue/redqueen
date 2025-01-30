@@ -1,9 +1,14 @@
 .PokerCard {
-  padding: 3px;
-  margin: 2px;
   border-style: none;
   /* transform: rotate(3deg); */
   /*makes it easier to see the overlap*/
+
+  width: 100%;
+
+  /* 5:7 Aspect Ratio - playing card */
+  padding-top: 140%;
+
+  position: relative
 }
 
 
