@@ -11,13 +11,13 @@ function BoardPage() {
 
   const [innerWidth, setInnerWidth] = useState(window.innerWidth);
   const [innerHeight, setInnerHeight] = useState(window.innerHeight);
-  const [orientation, setOrientation] = useState(screen.orientation);
+  const [orientation, setOrientation] = useState(window.screen.orientation);
 
   useEffect(() => {
     const onResizeListener = (e: any) => {
       setInnerWidth(window.innerWidth)
       setInnerHeight(window.innerHeight)
-      setOrientation(screen.orientation)
+      setOrientation(window.screen.orientation)
     }
     window.addEventListener('resize', onResizeListener)
 
