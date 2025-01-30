@@ -96,7 +96,7 @@ export function DnDemo() {
 
     return <div style={{
       display: 'flex',
-      flexWrap: 'wrap',
+      flexWrap: 'nowrap',
       gap: '20px',
       justifyContent: 'space-around',
       marginTop: '20px'
