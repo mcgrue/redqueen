@@ -68,7 +68,8 @@ export const SvgLeteleCard: React.FC<SvgLeteleCardProps> = ({ card }: SvgLeteleC
 
   return (
     <div className={styles.PokerCard} {...extraProps} data-card-uuid={card.uuid}>
-      <CardArt style={{ height: `${height}px`, width: `${width}px` }} />
+      {/* <CardArt style={{ height: `${height}px`, width: `${width}px` }} /> */}
+      <CardArt />
     </div>
   );
 }
@@ -98,7 +99,8 @@ export const Joker: React.FC<JokerProps> = ({ jokerIdx, faceUp }: JokerProps) =>
 
   return (
     <div className={styles.PokerCard} {...extraProps} data-card-uuid={'Jooooooker?'}>
-      <CardArt style={{ height: `${height}px`, width: `${width}px` }} />
+      <CardArt />
+      {/* <CardArt style={{ height: `${height}px`, width: `${width}px` }} /> */}
     </div>
   );
 }

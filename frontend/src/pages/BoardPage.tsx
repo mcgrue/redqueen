@@ -11,7 +11,10 @@ function BoardPage() {
       <header className="App-header">
         Board Game
 
-        <DnDemo />
+        <div style={{ width: '80%', height: '100%' }}>
+          <DnDemo />
+        </div>
+
       </header>
     </div>
   );

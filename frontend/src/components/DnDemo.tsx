@@ -1,34 +1,34 @@
 import React, { useState } from 'react';
 import { DndContext, DragEndEvent, DragOverlay, useSensor, useSensors } from '@dnd-kit/core';
-import {
-  restrictToWindowEdges,
-} from '@dnd-kit/modifiers';
+import { restrictToWindowEdges, } from '@dnd-kit/modifiers';
 import { CardPileId, findParentPileIdx, getCardById, moveCardTo, type GameBoard, type CardPileUuid } from './GameBoard';
 import { SmartPointerSensor } from './SmartPointerSensor';
 import { makePokerDeck, PokerCardUuid, type PokerCard } from './PokerDeck';
 import DropZone from './DropZone';
 import { SvgLeteleCard, Joker } from './SvgLeteleCard';
 
+import { makeSolitaireDeck } from './SolitaireBoard';
 
 export function DnDemo() {
 
-  let start: GameBoard = {};
-  const deck = CardPileId('Deck');
-  start[deck] = {
-    cards: makePokerDeck(false),
-    color: '#422',
-  };
-  const hand = CardPileId('Hand');
-  start[hand] = {
-    cards: [],
-    color: '#242',
-  };
-  const field = CardPileId('Field');
-  start[field] = {
-    cards: [
-    ],
-    color: '#224',
-  };
+  let start: GameBoard = makeSolitaireDeck(makePokerDeck(false));
+
+  // const deck = CardPileId('Deck');
+  // start[deck] = {
+  //   cards: makePokerDeck(false),
+  //   color: '#422',
+  // };
+  // const hand = CardPileId('Hand');
+  // start[hand] = {
+  //   cards: [],
+  //   color: '#242',
+  // };
+  // const field = CardPileId('Field');
+  // start[field] = {
+  //   cards: [
+  //   ],
+  //   color: '#224',
+  // };
 
   const [board, setBoard] = useState(start);
   //const activeRef = useRef<HTMLDivElement | null>(null);
@@ -86,14 +86,38 @@ export function DnDemo() {
     setBoard(new_board);
   }
 
+  // row 1 is entries 0-6 in board
+  const row1 = Object.entries(board).slice(0, 7);
+  const row2 = Object.entries(board).slice(7, 14);
+
+  const Row = function (props: { cols: typeof row1 }) {
+
+    const { cols } = props;
+
+    return <div style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '20px',
+      justifyContent: 'space-around',
+      marginTop: '20px'
+    }}>
+      {cols.map(([id, container], index) => (
+        <div key={id} style={{ width: 'calc(100% / 8)' }}>
+          <DropZone
+            id={`DropZone-${id}`}
+            color={container.color}
+            cards={container.cards}
+          />
+        </div>
+      ))}
+    </div>
+  }
+
   return (
     <DndContext onDragEnd={handleDragEnd} onDragStart={handleDragStart} sensors={sensors}>
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
 
-        {Object.entries(board).map(([id, container]) => (
-          <DropZone key={id} id={`DropZone-${id}`} color={container.color} cards={container.cards} />
-        ))}
-      </div>
+      <Row cols={row1} />
+      <Row cols={row2} />
 
       <DragOverlay zIndex={999999999999999} modifiers={[restrictToWindowEdges]} dropAnimation={{
         duration: 500,
