@@ -99,7 +99,8 @@ export function DnDemo() {
       flexWrap: 'nowrap',
       gap: '20px',
       justifyContent: 'space-around',
-      marginTop: '20px'
+      marginTop: '20px',
+      maxWidth: '1500px',
     }}>
       {cols.map(([id, container], index) => (
         <div key={id} style={{ width: 'calc(100% / 8)' }}>
