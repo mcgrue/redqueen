@@ -6,7 +6,6 @@ function BoardPage() {
   // usestate to keep track of the cards. clicking on them changes the boolean
   // if the card is face up or face down
 
-
   // if we're at 1500 x 1000 or more, we don't care about 'unsupported'
   // else, ask if we have a portrait orientation, and render unsupported
 
@@ -15,13 +14,14 @@ function BoardPage() {
   const [orientation, setOrientation] = useState(screen.orientation);
 
   useEffect(() => {
-    const onResizeListener = (e) => {
+    const onResizeListener = (e: any) => {
       setInnerWidth(window.innerWidth)
       setInnerHeight(window.innerHeight)
       setOrientation(screen.orientation)
     }
     window.addEventListener('resize', onResizeListener)
 
+    // effects need to clean up on unmount
     return () => window.removeEventListener('resize', onResizeListener)
   }, [])
 
